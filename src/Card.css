@@ -1,0 +1,67 @@
+.cardContainer {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    width: 450px;
+}
+
+#cardHeader {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+}
+
+#cardHeader #cardProfilePic {
+    margin-right: 8px;
+}
+
+.cardContainer img {
+    width: 100%;
+    height: auto;
+}
+
+#cardBodyContainer {
+    padding: 10px;
+}
+
+#cardBtnLine {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardBtnLineLeft svg {
+    margin-right: 10px;
+}
+
+#cardLikes {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+#cardCommentInputContainer {
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#cardCommentInputContainer input {
+    font-size: 14px;
+    width: 80%;
+    padding: 5px;
+    border: none;
+    outline: none;
+}
+
+#cardCommentInputContainer button {
+    border: none;
+    background-color: white;
+    color:rgb(0, 149, 246);
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+#cardCommentInputContainer button:active {
+    color:rgb(178, 223, 252);
+}

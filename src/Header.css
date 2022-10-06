@@ -1,0 +1,50 @@
+.headerContainer {
+    background-color: white;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    height: 60px;
+}
+
+#innerHeader {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    font-family: 'Dancing Script', cursive;
+}
+
+#searchInput {
+    padding: 5px;
+    padding-left: 7px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+    box-sizing: border-box;
+    transition: width 0.5s;
+    width: 150px;
+    outline: none;
+}
+
+#searchInput:focus {
+    width: 200px;
+    text-align: start;
+}
+
+#headerBtnContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.headerBtn {
+    margin-left: 22px;
+}
+
+.headerBtn svg {
+    width: 50px;
+}

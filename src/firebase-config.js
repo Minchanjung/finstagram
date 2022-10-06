@@ -1,15 +1,31 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import "firebase/firestore";
+import "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDuSiGDwALaBjFZS2kxsBXZpU0thSDeOxE",
-    authDomain: "finstagram-c4b54.firebaseapp.com",
-    projectId: "finstagram-c4b54",
-    storageBucket: "finstagram-c4b54.appspot.com",
-    messagingSenderId: "985011444714",
-    appId: "1:985011444714:web:6995f60d2bb5f070233093",
-    measurementId: "G-YDW3VFGVKL"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APPID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
 };
 
-const app = initializeApp(firebaseConfig)
+export const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app);
+
+export const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+    console.log(auth);
+    signInWithPopup(auth, provider).then((result) => {
+        console.log(result);
+    }).catch((error) => {
+        console.log(error);
+    })
+}

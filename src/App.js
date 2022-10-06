@@ -2,28 +2,19 @@ import './App.css';
 import React from 'react';
 import Header from './Header';
 import Card from './Card';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from "./firebase-config";
 import { useState, useEffect } from 'react';
 
-function App() {
-  const [uid, setUid] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [profilePic, setProfilePic] = useState(null);
+function App(props) {
+  const [uid, setUid] = useState(props.user.uid);
+  const [username, setUsername] = useState(props.user.displayName);
+  const [profilePic, setProfilePic] = useState(props.user.photoURL);
 
-  /*onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log(user);
-        setUid(user.uid)
-        console.log(uid);
-    } else {
-        console.log("user is logged out");
-    }
-})*/
+
+  console.log(uid, username, profilePic);
 
   return (
     <div className="App">
-      <Header/>
+      <Header userPic={profilePic} />
       <div id="postsContainer">
         <Card/>
       </div>

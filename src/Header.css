@@ -48,3 +48,10 @@
 .headerBtn svg {
     width: 50px;
 }
+
+#myProfileBtn img {
+    width: 30px;
+    height: auto;
+    border-radius: 25px;
+    margin-left: 20px;
+}

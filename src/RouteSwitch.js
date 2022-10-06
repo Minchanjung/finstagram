@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import SignIn from "./SignIn";
+import Post from "./Post";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from 'react';
 import { auth } from "./firebase-config";
@@ -14,6 +15,7 @@ const RouteSwitch = () => {
             if (user) {
                 console.log("logged in")
                 setUser(user)
+                console.log(user)
                 setHome(true);
             } else {
                 console.log("user is logged out");
@@ -25,7 +27,10 @@ const RouteSwitch = () => {
     return (
         <BrowserRouter>
             <Routes>
-                {home ? <Route path="/" element={<App />} /> : <Route path="/" element={<SignIn />} />}
+                {home ? <Route path="/" element={<App user={user} />} /> : <Route path="/" element={<SignIn />} />}
+                
+                <Route path="/post" element={<Post userPic={user.photoURL} />} />
+
             </Routes>
         </BrowserRouter>
     )

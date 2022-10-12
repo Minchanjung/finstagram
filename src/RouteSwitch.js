@@ -28,8 +28,8 @@ const RouteSwitch = () => {
         <BrowserRouter>
             <Routes>
                 {home ? <Route path="/" element={<App user={user} />} /> : <Route path="/" element={<SignIn />} />}
-                
-                <Route path="/post" element={<Post userPic={user.photoURL} />} />
+
+                <Route path="/post" element={<Post user={user} />} />
 
             </Routes>
         </BrowserRouter>
@@ -38,4 +38,4 @@ const RouteSwitch = () => {
 
 export default RouteSwitch;
 
-//<Route path="/" element={home}/>
+//<Route path="/" element={home}/>     <Route path="/post" element={<Post user={user} />} />

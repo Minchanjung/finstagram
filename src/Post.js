@@ -21,7 +21,7 @@ const Post = (props) => {
         const reader = new FileReader();
         const file = e.target.files[0]
         setImgToPost(e.target.files[0]);
-        setImgName(`${e.target.files[0].name} + ${v4()}`);
+        setImgName(e.target.files[0].name + v4());
         let img = null
         reader.addEventListener('load', () => {
             img = reader.result

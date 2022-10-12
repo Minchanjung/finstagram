@@ -2,6 +2,7 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     width: 450px;
+    margin-bottom: 3rem;
 }
 
 #cardHeader {
@@ -12,6 +13,13 @@
 
 #cardHeader #cardProfilePic {
     margin-right: 8px;
+    padding-top: 3px;
+}
+
+#cardProfilePic img{
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
 }
 
 .cardContainer img {
@@ -21,6 +29,16 @@
 
 #cardBodyContainer {
     padding: 10px;
+}
+
+#cardCommentsBox div {
+    font-size: 14px;
+}
+
+#cardCommentsBox span {
+    font-size: 14px;
+    font-weight: 900;
+    margin-right: 5px;
 }
 
 #cardBtnLine {
@@ -43,6 +61,7 @@
     padding-top: 10px;
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 #cardCommentInputContainer input {

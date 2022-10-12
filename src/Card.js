@@ -1,17 +1,34 @@
 import './Card.css'
 import React from 'react'
 import testImg from "./files/testImg"
+import { useEffect, useState } from 'react'
+import { ref, getDownloadURL } from 'firebase/storage';
+import { imgStorage } from './firebase-config';
 
-const Card = () => {
+const Card = (props) => {
+    const dataDisplayName = props.data.displayName;
+    const dataCaption = props.data.caption;
+    const dataImgID = props.data.imgID;
+    const postRef = ref(imgStorage, `images/${dataImgID}`);
+    const [imgURL, setImgURL] = useState(null);
+    const profilePic = props.profilePicture;
+
+    useEffect(() => {  
+        getDownloadURL(postRef).then((url) => {
+            console.log(url);
+            setImgURL(url);
+        })
+    }, [postRef, imgURL])
+
     return (
         <div className='cardContainer'>
             <div id="cardHeader">
                 <div id="cardProfilePic">
-                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="nav_icon__1b4zK nav_person__11phe" height="1.5rem" width="1.5rem" xmlns="http://www.w3.org/2000/svg"><path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"></path><path fill="none" strokeMiterlimit="10" strokeWidth="32" d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z"></path></svg>
+                    <img src={profilePic} alt=""></img>
                 </div>
-                <div id="cardUsername">@testuser</div>
+                <div id="cardUsername">{dataDisplayName}</div>
             </div>
-            <img src={testImg} id="cardImg"alt=""></img>
+            <img src={imgURL} id="cardImg"alt=""></img>
             <div id="cardBodyContainer">
                 <div id="cardBtnLine">
                     <div className="cardBtnLineLeft">
@@ -23,7 +40,7 @@ const Card = () => {
                 </div>
                 <p id="cardLikes">33 Likes</p>
                 <div id="cardCommentsBox">
-
+                    <div><span>{dataDisplayName}</span>{dataCaption}</div>
                 </div>
                 <div id="cardCommentInputContainer">
                     <input id="cardCommentInput" placeholder='Add a comment...'></input>

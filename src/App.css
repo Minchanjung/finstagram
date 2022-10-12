@@ -17,4 +17,5 @@ body {
     align-items: center;
     height: 100%;
     padding-top: 3rem;
+    flex-direction: column;
 }

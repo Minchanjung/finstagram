@@ -9,6 +9,7 @@ import { v4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
 const Post = (props) => {
+    const [uid, setUid] = useState(props.user.uid);
     const [profilePic, setProfilePic] = useState(props.user.photoURL);
     const [caption, setCaption] = useState("");
     const [imgToPost, setImgToPost] = useState(null);
@@ -64,7 +65,7 @@ const Post = (props) => {
 
     return (
         <div>
-            <Header userPic={profilePic} />
+            <Header userPic={profilePic} uid={uid}/>
 
             <div id="postPageContentContainer">
                 <div id="postPageContent">

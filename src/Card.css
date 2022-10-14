@@ -33,11 +33,12 @@
 
 #cardCommentsBox div {
     font-size: 14px;
+    font-weight: 400;
 }
 
 #cardCommentsBox span {
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 500;
     margin-right: 5px;
 }
 

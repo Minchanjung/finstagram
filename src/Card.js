@@ -1,6 +1,5 @@
 import './Card.css'
 import React from 'react'
-import testImg from "./files/testImg"
 import { useEffect, useState } from 'react'
 import { ref, getDownloadURL } from 'firebase/storage';
 import { imgStorage } from './firebase-config';

@@ -29,7 +29,7 @@ function App(props) {
 
   return (
     <div className="App">
-      <Header userPic={profilePic} />
+      <Header userPic={profilePic} uid={uid}/>
       <div id="postsContainer">
         {posts.map((post) => {return <Card data={post} profilePicture={profilePic} />})}
         

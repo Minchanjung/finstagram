@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import "firebase/firestore";
 import "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -26,6 +26,14 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = () => {
     console.log(auth);
     signInWithPopup(auth, provider).then((result) => {
+        console.log(result);
+    }).catch((error) => {
+        console.log(error);
+    })
+}
+
+export const signOutOfGoogle = () => {
+    signOut(auth).then((result) => {
         console.log(result);
     }).catch((error) => {
         console.log(error);

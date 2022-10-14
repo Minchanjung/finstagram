@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import SignIn from "./SignIn";
 import Post from "./Post";
+import ProfilePage from "./ProfilePage";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from 'react';
 import { auth } from "./firebase-config";
@@ -31,6 +32,7 @@ const RouteSwitch = () => {
 
                 <Route path="/post" element={<Post user={user} />} />
 
+                <Route path="/profile/:uid" element={<ProfilePage user={user}/>} />
             </Routes>
         </BrowserRouter>
     )

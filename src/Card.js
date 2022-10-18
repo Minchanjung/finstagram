@@ -14,7 +14,6 @@ const Card = (props) => {
 
     useEffect(() => {  
         getDownloadURL(postRef).then((url) => {
-            console.log(url);
             setImgURL(url);
         })
     }, [postRef, imgURL])
@@ -25,7 +24,7 @@ const Card = (props) => {
                 <div id="cardProfilePic">
                     <img src={profilePic} alt=""></img>
                 </div>
-                <div id="cardUsername">{dataDisplayName}</div>
+                <div id="cardUsername">{dataDisplayName.split(/[ ,]+/).join('_').toLowerCase()}</div>
             </div>
             <img src={imgURL} id="cardImg"alt=""></img>
             <div id="cardBodyContainer">

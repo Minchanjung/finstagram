@@ -14,12 +14,9 @@ const RouteSwitch = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log("logged in")
                 setUser(user)
-                console.log(user)
                 setHome(true);
             } else {
-                console.log("user is logged out");
                 setHome(false);
             }
         })

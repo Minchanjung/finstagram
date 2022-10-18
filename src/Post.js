@@ -9,8 +9,8 @@ import { v4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
 const Post = (props) => {
-    const [uid, setUid] = useState(props.user.uid);
-    const [profilePic, setProfilePic] = useState(props.user.photoURL);
+    const uid = props.user.uid;
+    const profilePic = props.user.photoURL;
     const [caption, setCaption] = useState("");
     const [imgToPost, setImgToPost] = useState(null);
     const [imgName, setImgName] = useState("");

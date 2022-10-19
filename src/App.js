@@ -21,7 +21,7 @@ function App(props) {
       setPosts(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
     }
     console.log('inside useEffect');
-    console.log(profilePic);
+    console.log(profilePic); 
     getPosts()
   }, [])
 

@@ -13,28 +13,57 @@ const ProfilePage = (props) => {
     const userName = props.user.displayName;
     const [posts, setPosts] = useState([]);
     const postCollectionRef = collection(db, "posts");
-    const [imgURL, setImgURL] = useState([]);
+    const [imgURL, setImgURL] = useState(new Set());
+    const [userPics, setUserPics] = useState([]);
 
     useEffect(() => {
 
-        const getPosts = async () => {
+        /*const getPosts = async () => {
             const data = await getDocs(postCollectionRef);
             setPosts(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
         }
         getPosts()
 
+        console.log(posts)
+
+        const setNeededUrl = () => {
+            posts.forEach((post) => {
+                if (post.uid == uid) {
+                    console.log(post);
+                }
+            })
+        }
+
+        setNeededUrl();
+
         listAll(ref(imgStorage, "images")).then((response) => {
+            //console.log(response);
+            //console.log(response.items); 
             response.items.forEach((item) => {
                 getDownloadURL(item).then((url) => {
                     setImgURL((prev) => [...prev, url])
                 })
             })
+        })*/
+
+        getDocs(postCollectionRef).then((data) => {
+            console.log("function running");
+            data.docs.map((doc) => {
+                console.log(doc.data())
+                if (doc.data().uid === uid) {
+                    console.log('loop ran inside if');
+                    console.log(imgURL);
+                    getDownloadURL(ref(imgStorage, `images/${doc.data().imgID}`)).then((url) => {
+                        setImgURL((prev) => new Set(prev).add(url));
+                    })
+                }
+            });
         })
 
         
     }, []) 
 
-    console.log(imgURL)
+
 
     return (
         <div>
@@ -55,8 +84,8 @@ const ProfilePage = (props) => {
                     </div>
                 </div>
                 <div id="profileContentContainer">
-                    {imgURL.map((img) => {
-                        return <img src={img} alt=""/>
+                    {[...imgURL].map((img) => {
+                        return <div><img src={img} alt=""/></div>
                     })}
                 </div>
             </div>

@@ -22,7 +22,7 @@ const Card = (props) => {
         <div className='cardContainer'>
             <div id="cardHeader">
                 <div id="cardProfilePic">
-                    <img src={profilePic} alt=""></img>
+                    <img src={profilePic} alt="" referrerPolicy="no-referrer"></img>
                 </div>
                 <div id="cardUsername">{dataDisplayName.split(/[ ,]+/).join('_').toLowerCase()}</div>
             </div>

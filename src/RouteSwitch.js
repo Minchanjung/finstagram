@@ -5,11 +5,13 @@ import Post from "./Post";
 import ProfilePage from "./ProfilePage";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from 'react';
-import { auth } from "./firebase-config";
+import { auth, db } from "./firebase-config";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 
 const RouteSwitch = () => {
     const [home, setHome] = useState(null);
     const [user, setUser] = useState(null);
+    const userCollection = collection(db, 'users');
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -19,11 +21,19 @@ const RouteSwitch = () => {
                 window.localStorage.setItem('uid', user.uid);
                 window.localStorage.setItem('displayName', user.displayName);
                 window.localStorage.setItem('profilePic', user.photoURL);
+                createUser(user.uid);
             } else {
                 setHome(false);
             }
         })
     }, [])
+
+    const createUser = async (id) => {
+        await setDoc(doc(db, "users", id), {
+            followers: [],
+            following: []
+        }, { merge: true})
+    }
 
     return (
         <BrowserRouter>

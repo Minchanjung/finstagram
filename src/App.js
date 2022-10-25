@@ -23,7 +23,7 @@ function App(props) {
     console.log('inside useEffect');
     console.log(profilePic); 
     getPosts()
-  }, [posts])
+  }, [])
 
   return (
     <div className="App">

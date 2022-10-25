@@ -33,6 +33,7 @@ export const signInWithGoogle = () => {
 }
 
 export const signOutOfGoogle = () => {
+    window.localStorage.clear();
     signOut(auth).then((result) => {
         console.log(result);
     }).catch((error) => {

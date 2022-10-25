@@ -9,12 +9,19 @@ import { v4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
 const Post = (props) => {
-    const uid = props.user.uid;
-    const profilePic = props.user.photoURL;
+    const uid = window.localStorage.getItem('uid');
+    const profilePic = window.localStorage.getItem('profilePic');
     const [caption, setCaption] = useState("");
     const [imgToPost, setImgToPost] = useState(null);
     const [imgName, setImgName] = useState("");
     const navigate = useNavigate();
+    const currentDate = new Date();
+    const dateTime = currentDate.getDate() + "/"
+                + (currentDate.getMonth()+1)  + "/" 
+                + currentDate.getFullYear() + " "  
+                + currentDate.getHours() + ":"  
+                + currentDate.getMinutes() + ":" 
+                + currentDate.getSeconds();
 
     const postsCollection = collection(db, "posts");
 
@@ -38,15 +45,12 @@ const Post = (props) => {
         
     const submitPost = (e) => {
         e.preventDefault();
-        const path = '/'
         imgUpload();
-        createPost();
-        navigate(path);
     }
 
     const createPost = async () => {
         if (imgToPost != null) {
-            await addDoc(postsCollection, { displayName: props.user.displayName, uid: props.user.uid, caption: caption, imgID: imgName })
+            await addDoc(postsCollection, { displayName: props.user.displayName, uid: props.user.uid, caption: caption, imgID: imgName, likes: 0, dateTime: dateTime })
         }
    
     }
@@ -56,9 +60,11 @@ const Post = (props) => {
             return;
         } else {
             console.log(imgName)
+            const path = '/';
             const postRef = ref(imgStorage, `images/${imgName}`);
             uploadBytes(postRef, imgToPost).then(() => {
-                console.log("image uploaded");
+                createPost();
+                navigate(path);
             })
         }
     }

@@ -16,6 +16,9 @@ const RouteSwitch = () => {
             if (user) {
                 setUser(user)
                 setHome(true);
+                window.localStorage.setItem('uid', user.uid);
+                window.localStorage.setItem('displayName', user.displayName);
+                window.localStorage.setItem('profilePic', user.photoURL);
             } else {
                 setHome(false);
             }

@@ -8,20 +8,17 @@ import { db } from './firebase-config';
 
 function App(props) {
   const [uid, setUid] = useState(props.user.uid);
-  const [profilePic, setProfilePic] = useState(props.user.photoURL);
+  const profilePic = window.localStorage.getItem('profilePic');
   const [posts, setPosts] = useState([]);
   const postCollectionRef = collection(db, "posts");
-  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postCollectionRef);
-      console.log('data');
-      console.log(data);
+      console.log(data.docs)
       setPosts(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
     }
-    console.log('inside useEffect');
-    console.log(profilePic); 
+
     getPosts()
   }, [])
 

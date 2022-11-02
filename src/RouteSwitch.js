@@ -6,12 +6,11 @@ import ProfilePage from "./ProfilePage";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from 'react';
 import { auth, db } from "./firebase-config";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 
 const RouteSwitch = () => {
     const [home, setHome] = useState(null);
     const [user, setUser] = useState(null);
-    const userCollection = collection(db, 'users');
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -21,17 +20,20 @@ const RouteSwitch = () => {
                 window.localStorage.setItem('uid', user.uid);
                 window.localStorage.setItem('displayName', user.displayName);
                 window.localStorage.setItem('profilePic', user.photoURL);
-                createUser(user.uid);
+                createUser(user.uid, user.displayName, user.photoURL);
             } else {
                 setHome(false);
             }
         })
     }, [])
 
-    const createUser = async (id) => {
+    const createUser = async (id, username, profilepic) => {
         await setDoc(doc(db, "users", id), {
             followers: [],
-            following: []
+            following: [],
+            userID: id, 
+            userPic: profilepic, 
+            userName: username
         }, { merge: true})
     }
 

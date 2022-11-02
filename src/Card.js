@@ -3,6 +3,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { ref, getDownloadURL } from 'firebase/storage';
 import { imgStorage } from './firebase-config';
+import { Link } from 'react-router-dom';
 
 const Card = (props) => {
     const dataDisplayName = props.data.displayName;
@@ -12,6 +13,7 @@ const Card = (props) => {
     const postRef = ref(imgStorage, `images/${dataImgID}`);
     const [imgURL, setImgURL] = useState(null);
     const profilePic = props.profilePicture;
+    const uid = props.data.uid
 
     useEffect(() => {  
         getDownloadURL(postRef).then((url) => {
@@ -25,7 +27,7 @@ const Card = (props) => {
                 <div id="cardProfilePic">
                     <img src={profilePic} alt="" referrerPolicy="no-referrer"></img>
                 </div>
-                <div id="cardUsername">{dataDisplayName.split(/[ ,]+/).join('_').toLowerCase()}</div>
+                <Link to={`/profile/${uid}`} style={{ textDecoration: 'none', color: 'black' }}><div id="cardUsername">{dataDisplayName.split(/[ ,]+/).join('_').toLowerCase()}</div></Link>
             </div>
             <img src={imgURL} id="cardImg"alt=""></img>
             <div id="cardBodyContainer">
